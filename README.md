@@ -22,9 +22,9 @@
 
 ---
 
-## 😓 Where I Faced Difficulty
+## Where I Faced Difficulty
 
-### 🔐 JWT and Login
+JWT and Login
 
 - I tried to implement **JWT-based authentication** using `@nestjs/jwt`.
 - I added a `JwtAuthGuard`, login controller, and `jwtService.sign()` method.
@@ -33,23 +33,11 @@
 
 ➡ So finally, I removed JWT and used simple login logic with just **username and password** (no token).
 
----
 
-## 🧪 How to Test with `request.http`
+# How to Test with `request.http`
 
 Use this to test the backend easily while running on `http://localhost:3000`.
 
-### ✅ Register a User
-
-```http
-POST http://localhost:3000/users
-Content-Type: application/json
-
-{
-  "username": "john",
-  "password": "123456",
-  "role": "admin"
-}
 
 ## Project setup
 

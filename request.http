@@ -1,0 +1,517 @@
+### Create Record
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "propertyAddress": "456 Test ",
+  "transactionDate": "2024-05-12",
+  "borrowerName": "Vaibhav",
+  "loanOfficerName": "vishal",
+  "nmlsId": 654321,
+  "loanAmount": 220390,
+  "salesPrice": 30090,
+  "loanTerm": 17,
+  "apn": "APN456",
+  "enteredBy": "va_user3"
+}
+
+### Get All Records
+GET http://localhost:3000/records
+
+### Get One Record
+GET http://localhost:3000/records/1
+
+### Update Record
+PATCH http://localhost:3000/records/1
+Content-Type: application/json
+
+{
+  "reviewedBy": "admin1",
+  "status": "approved"
+}
+
+### Delete Record
+DELETE http://localhost:3000/records/1
+
+
+### Lock Record
+POST http://localhost:3000/records/1/lock
+Content-Type: application/json
+
+{
+  "username": "va_user3"
+}
+
+### Unlock Record
+POST http://localhost:3000/records/1/unlock
+Content-Type: application/json
+
+{
+  "username": "va_user1"
+}
+
+### Create a Record
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "propertyAddress": "123 Main St",
+  "transactionDate": "2024-06-15",
+  "borrowerName": "John Doe",
+  "loanOfficerName": "Jane Smith",
+  "nmlsId": 101010,
+  "loanAmount": 400000,
+  "salesPrice": 450000,
+  "loanTerm": 30,
+  "apn": "XYZ123",
+  "enteredBy": "va_user1"
+}
+### Create Batch
+POST http://localhost:3000/batches
+Content-Type: application/json
+
+{
+  "name": "Batch A",
+  "type": "daily",
+  "startDate": "2024-06-01",
+  "endDate": "2024-06-01",
+  "recordIds": [1, 2],
+  "assignedTo": "va_user1"
+}
+
+### Get All Batches
+GET http://localhost:3000/batches
+
+### Get Batches for a VA
+GET http://localhost:3000/batches/user/va_user3
+
+### Get Single Batch
+GET http://localhost:3000/batches/1
+
+### Delete Batch
+DELETE http://localhost:3000/batches/1
+
+### Get All Audit Logs
+GET http://localhost:3000/audit
+
+### Get Logs for Record 1
+GET http://localhost:3000/audit/record/1
+
+### Get Logs for User
+GET http://localhost:3000/audit/user/va_user1
+
+###checking logs
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "propertyAddress": "99 Test Street",
+  "transactionDate": "2025-06-19",
+  "borrowerName": "Test Borrower",
+  "loanOfficerName": "Officer Test",
+  "nmlsId": 123456,
+  "loanAmount": 500000,
+  "salesPrice": 550000,
+  "loanTerm": 30,
+  "apn": "ABC123",
+  "enteredBy": "va_test"
+}
+###Test all the complete api's
+###records
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "propertyAddress": "123 Elm St",
+  "transactionDate": "2025-06-19",
+  "borrowerName": "Jane Smith",
+  "loanOfficerName": "Mark Johnson",
+  "nmlsId": 556677,
+  "loanAmount": 400000,
+  "salesPrice": 450000,
+  "loanTerm": 15,
+  "apn": "ZZZ789",
+  "enteredBy": "admin",
+  "batchId": "2025-06-batch1",
+  "assignedTo": "va_user1"
+}
+
+
+###batch handling & pagination
+GET http://localhost:3000/records/assigned?username=va_user1
+
+
+
+###update record
+PATCH http://localhost:3000/records/1
+Content-Type: application/json
+
+{
+  "reviewedBy": "va_user1"
+}
+
+###lock record
+
+POST http://localhost:3000/records/1/lock
+Content-Type: application/json
+
+{
+  "username": "va_user3"
+}
+
+###unlock record
+POST http://localhost:3000/records/1/unlock
+Content-Type: application/json
+
+{
+  "username": "va_user3"
+}
+
+###log
+GET http://localhost:3000/audit
+
+### Create a user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "va_user1",
+  "fullName": "Virtual Assistant 1",
+  "email": "va1@example.com",
+  "role": "VA",
+   "password": "pass",
+}
+
+### Get all users
+GET http://localhost:3000/users
+
+### Get user by username
+GET http://localhost:3000/users/2
+
+### Delete by ID
+DELETE http://localhost:3000/users/1
+
+### Add record to test search
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "propertyAddress": "99 Test Avenue",
+  "transactionDate": "2025-06-10",
+  "borrowerName": "Alice Walker",
+  "loanOfficerName": "Samuel Mark",
+  "nmlsId": 112233,
+  "loanAmount": 350000,
+  "salesPrice": 400000,
+  "loanTerm": 20,
+  "apn": "XYZ321",
+  "enteredBy": "va_test",
+  "batchId": "batch-2025-06",
+  "assignedTo": "va_user1"
+}
+
+
+### Search by loan officer
+GET http://localhost:3000/records/search?query=samuel&page=1&limit=5
+
+
+### Search by borrower
+GET http://localhost:3000/records/search?query=alice&page=1&limit=5
+
+###get all records
+GET http://localhost:3000/records
+
+###get assigned records eith pagination 
+GET http://localhost:3000/records/assigned?username=va_user1&page=1&limit=5
+
+
+###lock a records 
+POST http://localhost:3000/records/1/lock
+Content-Type: application/json
+
+{
+  "username": "va_user1"
+}
+
+###unlock a record
+POST http://localhost:3000/records/1/unlock
+Content-Type: application/json
+
+{
+  "username": "va_user1"
+}
+
+###update a record
+
+PATCH http://localhost:3000/records/1
+Content-Type: application/json
+
+{
+  "reviewedBy": "admin_va",
+  "status": "verified"
+}
+
+###view all audit logs
+
+GET http://localhost:3000/audit
+
+###view audit by record 
+GET http://localhost:3000/audit/record/1
+
+###view audit by username
+GET http://localhost:3000/audit/user/va_user1
+
+###continue
+### Create a batch
+POST http://localhost:3000/batches
+Content-Type: application/json
+
+{
+  "name": "2025-06-batch2"
+}
+
+### Get all batches
+GET http://localhost:3000/batches
+
+### Get batch by ID
+GET http://localhost:3000/batches/1
+
+### Register a user
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "va_user2",
+  "password": "pass123",
+  "role": "va"
+}
+
+### Login as the user
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "va_user2",
+  "password": "pass123"
+}
+
+### Create test record
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "propertyAddress": "456 Lakeview Drive",
+  "transactionDate": "2025-06-19",
+  "borrowerName": "Alice Wonderland",
+  "loanOfficerName": "Chris Cooper",
+  "nmlsId": 999999,
+  "loanAmount": 300000,
+  "salesPrice": 350000,
+  "loanTerm": 20,
+  "apn": "LKE999",
+  "enteredBy": "va_user1",
+  "batchId": "2025-06-batch2",
+  "assignedTo": "va_user1"
+}
+###
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "propertyAddress": "101 Main St",
+  "transactionDate": "2025-06-19",
+  "borrowerName": "Alice Johnson",
+  "loanOfficerName": "Mark Smith",
+  "nmlsId": 789123,
+  "loanAmount": 350000,
+  "salesPrice": 400000,
+  "loanTerm": 20,
+  "apn": "XYZ456",
+  "enteredBy": "va_test"
+}
+
+
+### Search for borrower 'Alice'
+GET http://localhost:3000/records/search?query=Alice
+
+### Create new batch
+POST http://localhost:3000/batches
+Content-Type: application/json
+
+{
+  "id": "2025-06-batch1",
+  "createdBy": "admin"
+}
+
+### Get all batches
+GET http://localhost:3000/batches
+
+### Get single batch
+GET http://localhost:3000/batches/2025-06-batch1
+
+### Delete batch
+DELETE http://localhost:3000/batches/2025-06-batch1
+
+### Assign records
+POST http://localhost:3000/assignments/assign
+Content-Type: application/json
+
+{
+  "ids": [1],
+  "username": "va_user1"
+}
+
+### Unassign records
+POST http://localhost:3000/assignments/unassign
+Content-Type: application/json
+
+{
+  "ids": [1]
+}
+
+### Create a batch
+POST http://localhost:3000/batches
+Content-Type: application/json
+
+{
+  "id": "2025-06-batch1",
+  "name": "Week 3 - June 2025"
+}
+
+### Get all batches
+GET http://localhost:3000/batches
+
+### Get one batch
+GET http://localhost:3000/batches/2025-06-batch1
+
+### Delete a batch
+DELETE http://localhost:3000/batches/2025-06-batch1
+
+
+
+
+### PATCH: Update review
+PATCH http://localhost:3000/review/1
+Content-Type: application/json
+
+{
+  "reviewer": "admin",
+  "status": "verified",
+  "note": "Manually verified"
+}
+
+### GET pending
+GET http://localhost:3000/review/pending
+
+###
+GET http://localhost:3000/records
+
+###
+
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+  "id": 99,
+  "propertyAddress": "123 Test Street",
+  "transactionDate": "2024-01-01T00:00:00.000Z",
+  "borrowerName": "Test User",
+  "loanOfficerName": "Officer",
+  "nmlsId": 123456,
+  "loanAmount": 250000,
+  "salesPrice": 300000,
+  "loanTerm": 30,
+  "apn": "APN123456",
+  "enteredBy": "admin",
+  "enteredByDate": "2024-01-01T00:00:00.000Z",
+  "status": "pending",
+  "locked": false
+}
+
+###
+GET http://localhost:3000/review/pending
+
+### Get records by status
+GET http://localhost:3000/report/status?status=pending
+
+### Get records by reviewer
+GET http://localhost:3000/report/reviewer?reviewer=admin
+
+### Get all records
+GET http://localhost:3000/report/all
+
+### Get records by status
+GET http://localhost:3000/report/status?status=pending
+
+### Get records by reviewer
+GET http://localhost:3000/report/reviewer?reviewer=admin
+
+### Get all records
+GET http://localhost:3000/report/all
+
+### Get summary report
+GET http://localhost:3000/report/summary
+
+### Get all records
+GET http://localhost:3000/report/all
+Content-Type: application/json
+
+
+### Get records by status
+GET http://localhost:3000/report/status?status=pending
+Content-Type: application/json
+
+
+### Get records by reviewer
+GET http://localhost:3000/report/reviewer?reviewer=admin
+Content-Type: application/json
+
+
+### Create a user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "alice",
+  "password": "123456",
+  "role": "reviewer"
+}
+
+### Get user by ID
+GET http://localhost:3000/users/1
+
+
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "alice",
+  "password": "123456"
+}
+
+
+### Register a user (optional, if auto-created via service)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "123456",
+  "role": "admin"
+}
+
+
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+ "username": "john",
+  "password": "123456",
+  "role": "admin"
+}
+
+
+
